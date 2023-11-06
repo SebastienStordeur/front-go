@@ -18,9 +18,11 @@ const Homepage = () => {
     getProducts();
   }, []);
 
+  const token = localStorage.getItem("token");
+
   return (
     <div>
-      {" "}
+      {token && <h1>Authenticated</h1>}
       LIST
       {products &&
         products.map((product) => {
