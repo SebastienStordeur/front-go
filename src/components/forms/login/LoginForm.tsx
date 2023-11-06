@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import Input from "../../UI/Input";
 
 const LoginForm = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -31,8 +32,13 @@ const LoginForm = () => {
 
   return (
     <form id="login-form" onSubmit={handleSubmit}>
-      <input id="email-login" ref={emailInputRef} />
-      <input id="password-login" ref={passwordInputRef} />
+      <Input id="email-login" name="email" type="email" ref={emailInputRef} />
+      <Input
+        id="password-login"
+        name="password"
+        type="password"
+        ref={passwordInputRef}
+      />
       <button type="submit">Submit</button>
     </form>
   );

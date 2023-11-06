@@ -1,16 +1,19 @@
-import { forwardRef, InputHTMLAttributes, Ref } from "react";
+import React, { forwardRef, InputHTMLAttributes, Ref } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   name: string;
   type?: string;
+  ref?: Ref<HTMLInputElement>;
 }
 
 const Input: React.FC<InputProps> = forwardRef(
-  ({ id, name, type, ...rest }, ref: Ref<HTMLInputElement>) => {
+  ({ id, name, type, ...rest }, ref) => {
     return (
-      <div>
-        <label htmlFor={id}>{name}</label>
+      <div className="flex flex-col">
+        <label htmlFor={id} className="text-4xl text-red-600">
+          {name}
+        </label>
         <input
           id={id}
           name={name}
@@ -28,4 +31,4 @@ const Input: React.FC<InputProps> = forwardRef(
   }
 );
 
-export default Input;
+export default React.memo(Input);
