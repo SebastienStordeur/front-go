@@ -11,14 +11,14 @@ const Input: React.FC<InputProps> = forwardRef(
   ({ id, name, type, ...rest }, ref) => {
     return (
       <div className="flex flex-col">
-        <label htmlFor={id} className="text-4xl text-red-600">
+        <label htmlFor={id} className="text-4xl ">
           {name}
         </label>
         <input
           id={id}
           name={name}
           type={type || "text"}
-          className=""
+          className="border"
           ref={ref}
           autoComplete="true"
           role="textbox"
