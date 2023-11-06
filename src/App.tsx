@@ -1,13 +1,7 @@
-import Authpage from "./pages/Authpage";
-import Homepage from "./pages/Homepage";
+import Router from "./components/router/Router";
 
 function App() {
-  return (
-    <>
-      <Homepage />
-      <Authpage />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
