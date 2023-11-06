@@ -6,6 +6,7 @@ const Homepage = () => {
 
   useEffect(() => {
     const getProducts = async () => {
+      console.log("sent");
       const response = await fetch("http://localhost:8080/products", {
         method: "GET",
       });

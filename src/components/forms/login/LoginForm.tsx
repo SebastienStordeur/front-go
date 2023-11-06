@@ -1,7 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Input from "../../UI/Input";
+import { useAuth } from "../../../context/auth";
 
 const LoginForm = () => {
+  const { login } = useAuth();
+
+  const [error, setError] = useState<string>("");
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -13,20 +17,16 @@ const LoginForm = () => {
       password: passwordInputRef.current?.value,
     };
 
-    try {
-      const response = await fetch("http://localhost:8080/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-      // store in local
-      localStorage.setItem("token", data.token);
-      console.log(data.token, response.ok);
-    } catch (error) {
-      console.log(error);
+    const response = await login(formData);
+    console.log(response);
+    if (response?.error) {
+      setError(response.error);
+      return;
+    }
+
+    if (response?.token) {
+      localStorage.setItem("token", response.token);
+      setError("");
     }
   };
 
@@ -40,6 +40,7 @@ const LoginForm = () => {
         ref={passwordInputRef}
       />
       <button type="submit">Submit</button>
+      {error && <p>{error}</p>}
     </form>
   );
 };
